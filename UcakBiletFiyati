@@ -1,0 +1,47 @@
+import java.util.Scanner;
+
+public class BiletFiyatiBulma {
+    public static void main(String[] args) {
+        double fiyat = 0, km, yas, kmucret = 0.10, tarife;
+
+        Scanner girdi = new Scanner(System.in);
+        System.out.print("Mesafe Kaç KM :");
+        km = girdi.nextDouble();
+        if (km <= 0) {
+            System.out.println("Hatalı Veri Girdiniz");
+        } else {
+
+            System.out.print("Lütfen Yaşınızı Giriniz :");
+            yas = girdi.nextDouble();
+
+            System.out.println("Tek Yün için     => 1'e \nGidiş-Dönüş için => 2'ye basınız");
+            tarife = girdi.nextDouble();
+
+            if (tarife < 1 || tarife > 2) {
+                System.out.println("Hatalı veri girdiniz");
+            }
+            if (tarife == 2) {
+                if (yas >= 0 && yas <= 12) {
+                    fiyat = 2 * km * kmucret * 0.5 * 0.8;
+                } else if (yas > 12 && yas < 25) {
+                    fiyat = 2 * km * kmucret * 0.9 * 0.8;
+                } else if (yas >= 25 && yas < 65) {
+                    fiyat = 2 * km * kmucret * 0.8;
+                } else if (yas >= 65) {
+                    fiyat = 2 * km * kmucret * 0.7 * 0.8;
+                }
+            } else {
+                if (yas >= 0 && yas <= 12) {
+                    fiyat = km * kmucret * 0.5;
+                } else if (yas > 12 && yas < 25) {
+                    fiyat = km * kmucret * 0.9;
+                } else if (yas >= 25 && yas < 65) {
+                    fiyat = km * kmucret;
+                } else if (yas >= 65) {
+                    fiyat = km * kmucret * 0.7;
+                }
+            }
+            System.out.printf("Toplam Tutar :" + fiyat + "₺");
+        }
+    }
+}
